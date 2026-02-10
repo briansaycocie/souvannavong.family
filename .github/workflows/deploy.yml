@@ -61,7 +61,7 @@ jobs:
             $SSH_USER@$SSH_HOST "pwd && whoami && df -h | head -5"
           echo "Creating deployment directory..."
           ssh -i ~/.ssh/deploy_key -p $SSH_PORT -o StrictHostKeyChecking=yes -o UserKnownHostsFile=~/.ssh/known_hosts \
-            $SSH_USER@$SSH_HOST 'mkdir -p '"$DEPLOY_PATH"' && ls -ld '"$DEPLOY_PATH"
+            $SSH_USER@$SSH_HOST 'mkdir -p '"$DEPLOY_PATH"' && ls -ld '"$DEPLOY_PATH"'
 
       - name: Deploy to Cloud
         env:
