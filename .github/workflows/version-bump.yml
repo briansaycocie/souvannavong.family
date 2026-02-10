@@ -1,0 +1,151 @@
+name: Version Bump After Deploy
+
+on:
+  workflow_run:
+    workflows: ["Deploy to Cloud"]
+    types:
+      - completed
+    branches:
+      - main
+      - master
+
+jobs:
+  version-bump:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Configure Git
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+
+      - name: Get current version
+        id: current_version
+        run: |
+          VERSION=$(node -p "require('./package.json').version")
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+          echo "Current version: $VERSION"
+
+      - name: Determine version bump type
+        id: bump_type
+        run: |
+          # Check commit messages since last tag
+          LAST_TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo "")
+
+          if [ -z "$LAST_TAG" ]; then
+            # No tags yet, use all commits
+            COMMITS=$(git log --pretty=format:"%s" HEAD)
+          else
+            # Get commits since last tag
+            COMMITS=$(git log --pretty=format:"%s" ${LAST_TAG}..HEAD)
+          fi
+
+          echo "Commit messages:"
+          echo "$COMMITS"
+
+          # Determine bump type based on commit messages
+          if echo "$COMMITS" | grep -qiE "^(major|breaking|BREAKING CHANGE):"; then
+            echo "bump=major" >> $GITHUB_OUTPUT
+            echo "Bump type: MAJOR"
+          elif echo "$COMMITS" | grep -qiE "^(feat|feature|add|new):"; then
+            echo "bump=minor" >> $GITHUB_OUTPUT
+            echo "Bump type: MINOR"
+          else
+            echo "bump=patch" >> $GITHUB_OUTPUT
+            echo "Bump type: PATCH"
+          fi
+
+      - name: Bump version
+        id: version
+        run: |
+          npm version ${{ steps.bump_type.outputs.bump }} --no-git-tag-version
+          NEW_VERSION=$(node -p "require('./package.json').version")
+          echo "new_version=$NEW_VERSION" >> $GITHUB_OUTPUT
+          echo "Bumped to version: $NEW_VERSION"
+
+      - name: Update CHANGELOG
+        run: |
+          NEW_VERSION=${{ steps.version.outputs.new_version }}
+          DATE=$(date +%Y-%m-%d)
+
+          # Get commits since last tag for changelog
+          LAST_TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo "")
+
+          if [ -z "$LAST_TAG" ]; then
+            COMMITS=$(git log --pretty=format:"- %s" HEAD | head -20)
+          else
+            COMMITS=$(git log --pretty=format:"- %s" ${LAST_TAG}..HEAD)
+          fi
+
+          # Create new changelog entry
+          NEW_ENTRY="## [$NEW_VERSION] - $DATE\n\n### Changes\n$COMMITS\n"
+
+          # Insert after the first ## heading (below [Unreleased])
+          if grep -q "## \[Unreleased\]" CHANGELOG.md; then
+            # Insert after Unreleased section
+            awk -v entry="$NEW_ENTRY" '
+              /^## \[Unreleased\]/ {print; getline; print; print entry; next}
+              {print}
+            ' CHANGELOG.md > CHANGELOG.tmp
+            mv CHANGELOG.tmp CHANGELOG.md
+          else
+            # Insert after main heading
+            awk -v entry="$NEW_ENTRY" '
+              /^## \[/ && !found {print entry; found=1}
+              {print}
+            ' CHANGELOG.md > CHANGELOG.tmp
+            mv CHANGELOG.tmp CHANGELOG.md
+          fi
+
+          # Update version link at bottom
+          echo "" >> CHANGELOG.md
+          echo "[$NEW_VERSION]: https://github.com/\${{ github.repository }}/releases/tag/v$NEW_VERSION" >> CHANGELOG.md
+
+      - name: Update humans.txt
+        run: |
+          DATE=$(date +"%B %d, %Y")
+          sed -i.bak "s/Last Update: .*/Last Update: $DATE/" humans.txt
+          rm -f humans.txt.bak
+
+      - name: Commit version bump
+        run: |
+          git add package.json CHANGELOG.md humans.txt
+          git commit -m "chore: bump version to ${{ steps.version.outputs.new_version }} [skip ci]"
+          git tag -a "v${{ steps.version.outputs.new_version }}" -m "Release v${{ steps.version.outputs.new_version }}"
+
+      - name: Push changes
+        run: |
+          git push origin ${{ github.ref_name }}
+          git push origin "v${{ steps.version.outputs.new_version }}"
+
+      - name: Create GitHub Release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: v${{ steps.version.outputs.new_version }}
+          release_name: Release v${{ steps.version.outputs.new_version }}
+          body: |
+            ## What's Changed
+
+            See [CHANGELOG.md](https://github.com/${{ github.repository }}/blob/main/CHANGELOG.md) for details.
+
+            **Full Changelog**: https://github.com/${{ github.repository }}/compare/v${{ steps.current_version.outputs.version }}...v${{ steps.version.outputs.new_version }}
+          draft: false
+          prerelease: false

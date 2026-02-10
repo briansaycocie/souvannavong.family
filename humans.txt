@@ -1,0 +1,69 @@
+/* TEAM */
+
+Project Owner & Researcher: Brian Saycocie
+Location: Minnesota, USA
+Email: hello@souvannavong.family
+
+Design & Development: Brian Saycocie
+Location: Minnesota, USA
+Contact: hello@bri4n.com
+
+/* THANKS */
+
+Content Contributors:
+  [Name] - [Role/Contribution]
+
+Historical Consultants:
+  [Name] - [Role/Contribution]
+
+Family Members:
+  Ouladay Saycocie (Souvannavong) - Family history custodian
+  [Other family members who contributed]
+
+Special Thanks:
+  [Organizations or individuals who helped]
+
+/* TECHNOLOGY COLOPHON */
+
+Site Generator: Eleventy 2.0.1
+Templating: Nunjucks
+Languages: HTML5, CSS3, JavaScript (ES5+)
+CSS Methodology: BEM (Block Element Modifier)
+Minification: clean-css, terser
+Version Control: Git
+Deployment: GitHub Actions via SSH/rsync
+Hosting: [Your hosting provider]
+
+Analytics: [None/Your analytics solution]
+Fonts: Georgia, Times New Roman (system fonts)
+
+/* SITE */
+
+Version: 1.0.0
+Last Update: February 10, 2026
+Standards: WCAG 2.2 Level AAA, HTML5, CSS3, Schema.org
+Accessibility: Keyboard navigation, screen reader optimized
+Components: Responsive design, semantic markup
+Doctype: HTML5
+IDE: [Your preferred IDE, e.g., VS Code, Sublime Text]
+
+/* PROJECT */
+
+Repository: https://github.com/[owner]/souvannavong.family
+License: MIT License
+Copyright: © 2026 Brian Saycocie and the Souvannavong Family
+
+Purpose: Historical preservation and documentation of the Souvannavong
+family of Laos - four generations from royal advisors and diplomats
+through exile and resettlement.
+
+/* ATTRIBUTION */
+
+Historical content sourced from family-held materials, oral histories,
+Japanese government archives, and international historical records.
+
+AI Research Assistance: ChatGPT 5.2 (OpenAI) - Historical context
+and research expansion from family oral histories.
+
+Photographs: Family collections preserved in Australia, France,
+and the United States (Minnesota).

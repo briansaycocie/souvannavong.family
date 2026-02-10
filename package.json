@@ -1,0 +1,23 @@
+{
+  "name": "souvannavong-family",
+  "version": "1.0.0",
+  "description": "The Souvannavong Family - Royal Service, Diplomacy, and Diaspora",
+  "scripts": {
+    "start": "eleventy --serve",
+    "build": "eleventy",
+    "clean": "rm -rf _site"
+  },
+  "keywords": [
+    "family",
+    "family-history",
+    "laos",
+    "eleventy"
+  ],
+  "author": "Brian Saycocie",
+  "license": "MIT",
+  "devDependencies": {
+    "@11ty/eleventy": "^2.0.1",
+    "clean-css": "^5.3.3",
+    "terser": "^5.46.0"
+  }
+}

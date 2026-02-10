@@ -1,0 +1,56 @@
+name: Deploy to Cloud
+
+on:
+  push:
+    branches:
+      - main
+      - master
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build site
+        run: npm run build
+
+      - name: Setup SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.KEY }}" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          ssh-keyscan -H -p ${{ secrets.PORT }} ${{ secrets.HOST }} >> ~/.ssh/known_hosts 2>&1 | grep -v '^#'
+        env:
+          DEPLOY_KEY: ${{ secrets.KEY }}
+
+      - name: Deploy to Cloud
+        run: |
+          rsync -avz --delete --compress-level=9 \
+            -e "ssh -i ~/.ssh/deploy_key -p ${{ secrets.PORT }} -o StrictHostKeyChecking=yes -o UserKnownHostsFile=~/.ssh/known_hosts" \
+            _site/ \
+            ${{ secrets.USER }}@${{ secrets.HOST }}:${{ secrets.DEPLOY_PATH }}
+
+      - name: Set permissions and reload Nginx
+        run: |
+          ssh -i ~/.ssh/deploy_key -p ${{ secrets.PORT }} -o StrictHostKeyChecking=yes -o UserKnownHostsFile=~/.ssh/known_hosts \
+            ${{ secrets.USER }}@${{ secrets.HOST }} \
+            'sudo chown -R www-data:www-data ${{ secrets.DEPLOY_PATH }} && \
+             sudo chmod -R 755 ${{ secrets.DEPLOY_PATH }} && \
+             sudo systemctl reload nginx'
+
+      - name: Cleanup
+        if: always()
+        run: rm -f ~/.ssh/deploy_key
