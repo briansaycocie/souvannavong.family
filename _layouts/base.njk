@@ -63,11 +63,12 @@
 
   <link rel="stylesheet" href="/css/style.css?v={{ site.version }}">
 
-  {# Plausible Analytics - Privacy-respecting, cookieless analytics #}
-  {# Uncomment and configure after setting up Plausible (self-hosted or cloud) #}
-  {# Replace YOUR_DOMAIN with souvannavong.family #}
-  {# Replace YOUR_PLAUSIBLE_DOMAIN with your Plausible instance domain #}
-  {# <script defer data-domain="YOUR_DOMAIN" src="https://YOUR_PLAUSIBLE_DOMAIN/js/script.js"></script> #}
+  {# Privacy-friendly analytics by Plausible #}
+  <script async src="https://analytics.souvannavong.family/js/pa-cFgrdriQ5u-M-fdJvBpdR.js"></script>
+  <script>
+    window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
+    plausible.init()
+  </script>
 </head>
 <body>
   <a href="#main-content" class="skip-link">Skip to main content</a>
