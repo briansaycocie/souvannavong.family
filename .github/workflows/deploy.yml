@@ -82,11 +82,11 @@ jobs:
           SSH_PORT: ${{ secrets.PORT }}
           DEPLOY_PATH: ${{ secrets.DEPLOY_PATH }}
         run: |
+          echo "Setting permissions on deployed files..."
           ssh -i ~/.ssh/deploy_key -p $SSH_PORT -o StrictHostKeyChecking=yes -o UserKnownHostsFile=~/.ssh/known_hosts \
             $SSH_USER@$SSH_HOST \
-            "sudo chown -R www-data:www-data $DEPLOY_PATH && \
-             sudo chmod -R 755 $DEPLOY_PATH && \
-             sudo systemctl reload nginx"
+            "chmod -R 755 $DEPLOY_PATH"
+          echo "Deployment complete. Note: Nginx reload requires manual intervention or passwordless sudo configuration."
 
       - name: Cleanup
         if: always()
