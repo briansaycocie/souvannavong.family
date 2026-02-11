@@ -27,4 +27,4 @@ Outhong later relocated to **Australia**, where he lived in quiet exile until hi
 
 ## United States - Minnesota
 
-Another branch of the immediate family, including the user's mother, fled to the **United States**, settling in **Minnesota**, a major Lao refugee resettlement center. The family remains there today.
+Another branch of the immediate family, including the family historian's mother, fled to the **United States**, settling in **Minnesota**, a major Lao refugee resettlement center. The family remains there today.
