@@ -8,6 +8,9 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy("robots.txt");
   eleventyConfig.addPassthroughCopy("humans.txt");
 
+  // Copy IndexNow key file
+  eleventyConfig.addPassthroughCopy("c132507a884349febe565b5419b1e3b8.txt");
+
   // Watch CSS and JS files for changes
   eleventyConfig.addWatchTarget("assets/css");
   eleventyConfig.addWatchTarget("assets/js");
