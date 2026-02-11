@@ -5,6 +5,19 @@ All notable changes to the Souvannavong Family History website will be documente
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.0] - 2026-02-11
+
+### Changes
+- fix: remove sudo commands that require password authentication
+- fix: use double quotes for remote command variable expansion
+- fix: close single quote in remote mkdir command
+- fix: use shell concatenation for remote path expansion
+- fix: properly escape deployment path in SSH commands
+- fix: add SSH connection test and ensure deployment directory exists
+- fix: use environment variables for secrets in deploy workflow
+- fix: include package-lock.json for reproducible builds and GitHub Actions caching
+- feat: initial v1.0.0 release with complete family history documentation
+
 ## [1.0.0] - 2026-02-10
 
 ### Added
@@ -66,3 +79,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Comprehensive source notes and archival references
 
 [1.0.0]: https://github.com/[owner]/souvannavong.family/releases/tag/v1.0.0
+
+[1.1.0]: https://github.com/\briansaycocie/souvannavong.family/releases/tag/v1.1.0
