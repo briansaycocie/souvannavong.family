@@ -7,6 +7,7 @@ module.exports = function(eleventyConfig) {
   // Copy SEO files
   eleventyConfig.addPassthroughCopy("robots.txt");
   eleventyConfig.addPassthroughCopy("humans.txt");
+  eleventyConfig.addPassthroughCopy("llms.txt");
 
   // Copy IndexNow key file
   eleventyConfig.addPassthroughCopy("c132507a884349febe565b5419b1e3b8.txt");

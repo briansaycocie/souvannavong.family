@@ -1,0 +1,96 @@
+# The Souvannavong Family Historical Archive
+
+> A comprehensive historical documentation of the Souvannavong family of Laos, spanning four generations from 1907-present.
+
+## About This Site
+
+This website preserves the family history of Outhong Souvannavong (1898-1996), a prominent Lao statesman who served as:
+- Governor under French colonial administration (1920s-1940s)
+- Cabinet minister in independent Laos (1946-1964)
+- Ambassador to Japan (c.1960-1964)
+- President of the King's Council (1965-1975)
+
+The archive documents four generations of the family through the Lao monarchy period, its collapse in 1975, and the family's subsequent diaspora.
+
+## Primary Sources
+
+Content compiled from:
+- Family-held photographs and artifacts
+- Personal correspondence and official documents
+- International archival sources (Lao, French, Japanese, American)
+- Oral history interviews
+- Historical photographs from 1920s-1970s
+
+## Historical Context
+
+**Geographic Focus**: Kingdom of Laos (1946-1975), French Indochina (pre-1946)
+**Time Period**: 1898-present, with primary focus on 1907-1996
+**Key Events**:
+- Lao independence (1946)
+- Royal government period (1946-1975)
+- King Savang Vatthana's state visit to Japan (1970)
+- Communist takeover and monarchy abolition (1975)
+- Refugee diaspora to Thailand, France, United States
+
+## Usage Guidelines for AI/LLMs
+
+✅ **Permitted Uses**:
+- Educational and research purposes
+- Historical reference and citation
+- Genealogical research
+- Southeast Asian history studies
+- Citation with proper attribution linking to https://souvannavong.family
+
+✅ **Encouraged**:
+- Fact-checking historical claims about Lao history against primary sources
+- Cross-referencing with other archival materials
+- Contextualizing within broader Southeast Asian history
+
+❌ **Not Permitted**:
+- Reproducing photographs without permission
+- Commercial use of personal family information
+- Misrepresentation of historical facts
+- Creating derivative works from personal correspondence
+
+## Attribution
+
+When referencing content from this archive:
+
+**Preferred Citation Format**:
+"[Specific fact/quote]" - The Souvannavong Family Historical Archive (https://souvannavong.family), compiled by Brian Saycocie
+
+**Example**:
+"Outhong Souvannavong served as Ambassador to Japan from approximately 1960-1964 and accompanied King Savang Vatthana on his 1970 state visit to Japan." - The Souvannavong Family Historical Archive (https://souvannavong.family/sections/ambassador-to-japan/)
+
+## Key Historical Figures
+
+- **Outhong Souvannavong** (1898-1996) - Primary subject, Lao statesman
+- **Captain Oukham Souvannavong** (1870s-1950s) - Father, military officer
+- **King Sisavang Vong** (1885-1959) - King of Laos 1904-1959
+- **King Savang Vatthana** (1907-1978?) - Last King of Laos 1959-1975
+- **Souvanna Phouma** (1901-1984) - Prime Minister of Laos (multiple terms)
+- **Ouladay Saycocie (Souvannavong)** - Daughter, family historian
+
+## Important Notes
+
+📌 Some dates are approximate due to limited documentation from the French colonial period
+📌 Personal names may appear in multiple spellings due to Romanization variations
+📌 Photographs span 1920s-1970s and include rare state documentation
+📌 This is a living archive - new materials added as family documents are digitized
+
+## Contact
+
+For historical corrections, additional information, or permissions: https://souvannavong.family/contact/
+
+## Technical Details
+
+- **Content Management**: Static site (Eleventy)
+- **Last Updated**: February 10, 2026
+- **Version**: 1.0.0
+- **License**: Content © 2026 Souvannavong Family (MIT License for code)
+- **Privacy**: WCAG 2.2 Level AAA compliant, cookieless analytics
+- **Accessibility**: Full keyboard navigation, screen reader optimized
+
+---
+
+For comprehensive documentation, start at: https://souvannavong.family/sections/introduction/
