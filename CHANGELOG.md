@@ -5,6 +5,11 @@ All notable changes to the Souvannavong Family History website will be documente
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.3.0] - 2026-02-11
+
+### Changes
+- feat: optimize title tags for better SEO
+
 ## [1.2.0] - 2026-02-11
 
 ### Changes
@@ -95,3 +100,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [1.1.1]: https://github.com/\briansaycocie/souvannavong.family/releases/tag/v1.1.1
 
 [1.2.0]: https://github.com/\briansaycocie/souvannavong.family/releases/tag/v1.2.0
+
+[1.3.0]: https://github.com/\briansaycocie/souvannavong.family/releases/tag/v1.3.0
